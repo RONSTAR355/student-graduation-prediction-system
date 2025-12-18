@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Prediksi Kelulusan Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>📊 Prediksi Kelulusan</h2>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Beranda</a></li>
+                <li><a href="#prediction" class="nav-link">Prediksi</a></li>
+                <li><a href="#feedback" class="nav-link">Feedback</a></li>
+                <li><button class="btn-guide" id="btnGuide">📖 Petunjuk</button></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">Sistem Prediksi Kelulusan Mahasiswa Tepat Waktu</h1>
+                    <p class="hero-subtitle">Menggunakan Metode Jaringan Syaraf Tiruan Backpropagation</p>
+                    <div class="hero-buttons">
+                        <a href="#prediction" class="btn btn-primary">Mulai Prediksi</a>
+                        <button class="btn btn-secondary" id="btnLearnMore">Pelajari Lebih Lanjut</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://placehold.co/600x400?text=Graduation+Success+Prediction+System+with+Neural+Network+Visualization" alt="Graduation Success Prediction System with Neural Network Visualization">
+                </div>
+            </div>
+
+            <!-- About System -->
+            <div class="about-system">
+                <h2 class="section-title">Tentang Sistem</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">🎯</div>
+                        <h3>Tujuan</h3>
+                        <p>Membantu memprediksi kelulusan mahasiswa tepat waktu berdasarkan data akademik menggunakan metode machine learning.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🧠</div>
+                        <h3>Metode Utama</h3>
+                        <p>Jaringan Syaraf Tiruan (JST) Backpropagation sebagai metode penelitian utama dengan akurasi tinggi.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🔬</div>
+                        <h3>Fitur Eksplorasi</h3>
+                        <p>Menyediakan Naive Bayes dan Decision Tree sebagai metode pembanding dan eksplorasi sistem.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio & Identity -->
+            <div class="portfolio">
+                <h2 class="section-title">Portofolio & Identitas</h2>
+                <div class="portfolio-content">
+                    <div class="portfolio-image">
+                        <img src="ronald.jpg" alt="Ronald Parsaulian Simanjuntak" onerror="this.src='https://placehold.co/300x300?text=Ronald+Parsaulian+Simanjuntak'">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-name">Ronald Parsaulian Simanjuntak</h3>
+                        <p class="portfolio-role">Mahasiswa Informatika | Universitas Pamulang</p>
+                        <div class="portfolio-divider"></div>
+                        <p class="portfolio-description">
+                            Saya adalah mahasiswa Universitas Pamulang yang memiliki ketertarikan besar di bidang Informatika, khususnya dalam keamanan siber (Cyber Security). Ketertarikan ini mendorong saya untuk terus mempelajari dan memahami perkembangan teknologi informasi, dengan fokus pada pengamanan sistem, jaringan, dan data.
+                        </p>
+                        <p class="portfolio-description">
+                            Aplikasi ini merupakan bagian dari pengembangan sistem prediksi kelulusan mahasiswa tepat waktu berbasis data akademik. Sistem ini mengimplementasikan metode Jaringan Syaraf Tiruan Backpropagation sebagai metode utama penelitian, serta menyediakan metode lain seperti Naive Bayes dan Decision Tree sebagai fitur eksplorasi dan pengembangan aplikasi.
+                        </p>
+                        <p class="portfolio-description">
+                            Melalui pengembangan aplikasi ini, diharapkan sistem dapat menjadi sarana pembelajaran, demonstrasi, dan pendukung pengambilan keputusan akademik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prediction Section -->
+    <section id="prediction" class="section">
+        <div class="container">
+            <h2 class="section-title">Prediksi Kelulusan Mahasiswa</h2>
+            
+            <!-- Method Selection -->
+            <div class="method-selection">
+                <h3>Pilih Metode Prediksi</h3>
+                <div class="method-cards">
+                    <div class="method-card active" data-method="backpropagation">
+                        <div class="method-badge">Metode Utama</div>
+                        <h4>🧠 JST Backpropagation</h4>
+                        <p>Metode penelitian utama dengan algoritma neural network</p>
+                    </div>
+                    <div class="method-card" data-method="naive-bayes">
+                        <div class="method-badge explore">Eksplorasi</div>
+                        <h4>📊 Naive Bayes</h4>
+                        <p>Metode probabilistik berbasis teorema Bayes</p>
+                    </div>
+                    <div class="method-card" data-method="decision-tree">
+                        <div class="method-badge explore">Eksplorasi</div>
+                        <h4>🌳 Decision Tree</h4>
+                        <p>Metode pohon keputusan berbasis aturan</p>
+                    </div>
+                </div>
+                <div class="method-note">
+                    <p>ℹ️ <strong>Catatan:</strong> Metode JST Backpropagation merupakan metode utama penelitian, metode lainnya hanya sebagai fitur eksplorasi sistem.</p>
+                </div>
+            </div>
+
+            <!-- Input Form -->
+            <div class="prediction-form">
+                <h3>Input Data Akademik Mahasiswa</h3>
+                <form id="formPrediction">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nilaiTugas">Nilai Tugas (0-100)</label>
+                            <input type="number" id="nilaiTugas" min="0" max="100" step="0.1" required>
+                            <small>Rata-rata nilai tugas mahasiswa</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="nilaiUjian">Nilai Ujian (0-100)</label>
+                            <input type="number" id="nilaiUjian" min="0" max="100" step="0.1" required>
+                            <small>Rata-rata nilai ujian mahasiswa</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="persenKehadiran">Persentase Kehadiran (%)</label>
+                            <input type="number" id="persenKehadiran" min="0" max="100" step="0.1" required>
+                            <small>Persentase kehadiran kuliah</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="ipk">IPK Sementara (0.00-4.00)</label>
+                            <input type="number" id="ipk" min="0" max="4" step="0.01" required>
+                            <small>Indeks Prestasi Kumulatif saat ini</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="lamaStudi">Lama Studi (Semester)</label>
+                            <input type="number" id="lamaStudi" min="1" max="14" required>
+                            <small>Semester yang sedang berjalan</small>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-predict">
+                        <span class="btn-text">🔮 Prediksi Kelulusan</span>
+                        <span class="btn-loader" style="display: none;">⏳ Memproses...</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Result Section -->
+            <div class="prediction-result" id="resultSection" style="display: none;">
+                <h3>Hasil Prediksi</h3>
+                <div class="result-card">
+                    <div class="result-status" id="resultStatus"></div>
+                    <div class="result-details">
+                        <div class="result-item">
+                            <span class="result-label">Metode:</span>
+                            <span class="result-value" id="resultMethod"></span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Probabilitas:</span>
+                            <span class="result-value" id="resultProbability"></span>
+                        </div>
+                    </div>
+                    <div class="result-summary" id="resultSummary"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback" class="section">
+        <div class="container">
+            <h2 class="section-title">Feedback Aplikasi</h2>
+            <div class="feedback-intro">
+                <p>💡 <strong>Masukan pengguna sangat membantu pengembangan sistem di masa mendatang.</strong></p>
+            </div>
+            
+            <div class="feedback-form">
+                <form id="formFeedback">
+                    <div class="form-group">
+                        <label for="feedbackNama">Nama Lengkap</label>
+                        <input type="text" id="feedbackNama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackEmail">Email</label>
+                        <input type="email" id="feedbackEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackJenis">Jenis Pesan</label>
+                        <select id="feedbackJenis" required>
+                            <option value="">-- Pilih Jenis Pesan --</option>
+                            <option value="saran">💡 Saran</option>
+                            <option value="laporan">🐛 Laporan Masalah</option>
+                            <option value="kritik">📝 Kritik</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackPesan">Pesan</label>
+                        <textarea id="feedbackPesan" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">📤 Kirim Feedback</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Modal -->
+    <div class="modal" id="guideModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📖 Petunjuk Penggunaan Aplikasi</h2>
+                <button class="modal-close" id="closeGuide">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Sistem Prediksi Kelulusan Mahasiswa</h3>
+                <div class="guide-steps">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Pengenalan Sistem</h4>
+                            <p>Pengguna membuka landing page aplikasi untuk memahami tujuan dan fungsi sistem.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Menu Prediksi</h4>
+                            <p>Pengguna masuk ke menu "Prediksi Kelulusan" melalui navigasi atau tombol di halaman utama.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Pilih Metode</h4>
+                            <p>Pilih metode prediksi yang tersedia: JST Backpropagation (utama), Naive Bayes, atau Decision Tree.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Input Data</h4>
+                            <p>Masukkan data akademik mahasiswa pada form input yang disediakan (Nilai Tugas, Nilai Ujian, Kehadiran, IPK, Lama Studi).</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Proses Prediksi</h4>
+                            <p>Klik tombol "Prediksi Kelulusan" dan tunggu sistem memproses data.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Lihat Hasil</h4>
+                            <p>Sistem akan menampilkan hasil prediksi kelulusan mahasiswa beserta probabilitas dan ringkasan.</p>
+                        </div>
+                    </div>
+                    <div class="guide-step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h4>Kirim Feedback</h4>
+                            <p>Pengguna dapat mengirimkan saran, laporan masalah, atau kritik melalui menu "Feedback".</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>✅ Berhasil</h2>
+                <button class="modal-close" id="closeSuccess">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Sistem Prediksi Kelulusan Mahasiswa | Ronald Parsaulian Simanjuntak</p>
+            <p>Universitas Pamulang - Informatika</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
