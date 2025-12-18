@@ -35,23 +35,6 @@ hamburger.addEventListener("click", () => {
   navMenu.classList.toggle("active")
 })
 
-document.getElementById("btnMulaiPrediksi").addEventListener("click", () => {
-  const predictionLink = document.querySelector('a[href="#prediction"]')
-  predictionLink.click()
-  // Smooth scroll to prediction section after navigation
-  setTimeout(() => {
-    document.getElementById("prediction").scrollIntoView({ behavior: "smooth" })
-  }, 100)
-})
-
-// Learn More button
-document.getElementById("btnLearnMore").addEventListener("click", () => {
-  document.querySelector('a[href="#prediction"]').click()
-  setTimeout(() => {
-    document.getElementById("prediction").scrollIntoView({ behavior: "smooth" })
-  }, 100)
-})
-
 // Method Selection
 const methodCards = document.querySelectorAll(".method-card")
 let selectedMethod = "backpropagation"
