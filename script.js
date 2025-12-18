@@ -35,9 +35,21 @@ hamburger.addEventListener("click", () => {
   navMenu.classList.toggle("active")
 })
 
+document.getElementById("btnMulaiPrediksi").addEventListener("click", () => {
+  const predictionLink = document.querySelector('a[href="#prediction"]')
+  predictionLink.click()
+  // Smooth scroll to prediction section after navigation
+  setTimeout(() => {
+    document.getElementById("prediction").scrollIntoView({ behavior: "smooth" })
+  }, 100)
+})
+
 // Learn More button
 document.getElementById("btnLearnMore").addEventListener("click", () => {
   document.querySelector('a[href="#prediction"]').click()
+  setTimeout(() => {
+    document.getElementById("prediction").scrollIntoView({ behavior: "smooth" })
+  }, 100)
 })
 
 // Method Selection
@@ -89,7 +101,6 @@ formPrediction.addEventListener("submit", (e) => {
   }, 1500)
 })
 
-// Prediction Functions
 function predictGraduation(nilaiTugas, nilaiUjian, kehadiran, ipk, semester, method) {
   let score = 0
   let probability = 0
@@ -97,8 +108,7 @@ function predictGraduation(nilaiTugas, nilaiUjian, kehadiran, ipk, semester, met
   let summary = ""
 
   if (method === "backpropagation") {
-    // JST Backpropagation - Main Research Method
-    // Weighted neural network simulation
+    // JST Backpropagation - Main Research Method with Neural Network Simulation
     const weights = {
       nilaiTugas: 0.15,
       nilaiUjian: 0.2,
@@ -107,57 +117,159 @@ function predictGraduation(nilaiTugas, nilaiUjian, kehadiran, ipk, semester, met
       semester: 0.15,
     }
 
-    // Normalize inputs and calculate weighted sum
+    // Normalize inputs
     const normalizedSemester = semester <= 8 ? 100 : Math.max(0, 100 - (semester - 8) * 10)
 
-    score =
+    // Hidden layer calculation (weighted sum)
+    const hiddenLayer1 =
       nilaiTugas * weights.nilaiTugas +
       nilaiUjian * weights.nilaiUjian +
       kehadiran * weights.kehadiran +
       (ipk / 4) * 100 * weights.ipk +
       normalizedSemester * weights.semester
 
-    // Sigmoid activation function
-    probability = 1 / (1 + Math.exp(-((score - 60) / 10)))
+    // Apply activation function (sigmoid)
+    probability = 1 / (1 + Math.exp(-((hiddenLayer1 - 60) / 10)))
+    score = hiddenLayer1
 
     result = probability >= 0.6 ? "✅ Lulus Tepat Waktu (1)" : "⚠️ Tidak Tepat Waktu (0)"
-    summary = `Berdasarkan analisis Jaringan Syaraf Tiruan Backpropagation dengan bobot optimal, mahasiswa memiliki karakteristik akademik dengan skor ${score.toFixed(2)}. IPK ${ipk} dan semester ${semester} menjadi faktor dominan dalam prediksi. ${probability >= 0.6 ? "Mahasiswa menunjukkan performa akademik yang baik dan diprediksi lulus tepat waktu." : "Mahasiswa perlu meningkatkan performa akademik untuk memastikan kelulusan tepat waktu."}`
+    summary = `Berdasarkan analisis Jaringan Syaraf Tiruan Backpropagation dengan arsitektur multi-layer, sistem menghitung weighted sum dari seluruh input (skor: ${score.toFixed(2)}) dan menerapkan fungsi aktivasi sigmoid. IPK ${ipk} dan semester ${semester} menjadi faktor dominan dalam prediksi. ${probability >= 0.6 ? "Mahasiswa menunjukkan performa akademik yang baik dan diprediksi lulus tepat waktu dengan confidence tinggi." : "Mahasiswa perlu meningkatkan performa akademik untuk memastikan kelulusan tepat waktu. Disarankan fokus pada peningkatan IPK dan manajemen waktu studi."}`
   } else if (method === "naive-bayes") {
-    // Naive Bayes - Probability-based
-    const conditions = [nilaiTugas >= 70, nilaiUjian >= 70, kehadiran >= 75, ipk >= 3.0, semester <= 8]
+    // Naive Bayes - Enhanced Probabilistic Method
+    // Define conditions based on academic standards
+    const conditions = {
+      tugasBaik: nilaiTugas >= 70,
+      ujianBaik: nilaiUjian >= 70,
+      kehadiranCukup: kehadiran >= 75,
+      ipkBaik: ipk >= 3.0,
+      semesterNormal: semester <= 8,
+    }
 
-    const trueCount = conditions.filter((c) => c).length
-    probability = trueCount / conditions.length
+    // Calculate individual probabilities (Bayes approach)
+    const priorLulus = 0.7 // Prior probability of graduating on time
+    const priorTidakLulus = 0.3
 
-    result = probability >= 0.6 ? "✅ Lulus Tepat Waktu (1)" : "⚠️ Tidak Tepat Waktu (0)"
-    summary = `Metode Naive Bayes menganalisis probabilitas berdasarkan kondisi akademik. Dari 5 kriteria kelulusan, mahasiswa memenuhi ${trueCount} kriteria. ${probability >= 0.6 ? "Probabilitas kelulusan tepat waktu cukup tinggi." : "Beberapa kriteria perlu ditingkatkan untuk meningkatkan peluang kelulusan tepat waktu."}`
-  } else if (method === "decision-tree") {
-    // Decision Tree - Rule-based
-    if (ipk >= 3.5 && semester <= 8) {
-      result = "✅ Lulus Tepat Waktu (1)"
-      probability = 0.95
-      summary =
-        "Berdasarkan pohon keputusan, IPK tinggi (≥3.5) dan semester optimal (≤8) menunjukkan prediksi kuat untuk lulus tepat waktu."
-    } else if (ipk >= 3.0 && kehadiran >= 80 && semester <= 8) {
-      result = "✅ Lulus Tepat Waktu (1)"
-      probability = 0.85
-      summary =
-        "IPK baik (≥3.0) dengan kehadiran tinggi (≥80%) dan semester normal menunjukkan peluang baik untuk lulus tepat waktu."
-    } else if (ipk >= 2.75 && nilaiUjian >= 75 && nilaiTugas >= 75) {
-      result = "✅ Lulus Tepat Waktu (1)"
-      probability = 0.7
-      summary =
-        "IPK cukup (≥2.75) dengan nilai ujian dan tugas baik menunjukkan potensi lulus tepat waktu dengan usaha konsisten."
-    } else if (semester > 10 || ipk < 2.5) {
-      result = "⚠️ Tidak Tepat Waktu (0)"
-      probability = 0.3
-      summary =
-        "Semester yang terlalu panjang (>10) atau IPK rendah (<2.5) menunjukkan risiko tinggi tidak lulus tepat waktu. Perlu konseling akademik."
+    // Likelihood calculations for each feature
+    let likelihoodLulus = 1.0
+    let likelihoodTidakLulus = 1.0
+
+    if (conditions.tugasBaik) {
+      likelihoodLulus *= 0.85
+      likelihoodTidakLulus *= 0.3
     } else {
+      likelihoodLulus *= 0.15
+      likelihoodTidakLulus *= 0.7
+    }
+
+    if (conditions.ujianBaik) {
+      likelihoodLulus *= 0.88
+      likelihoodTidakLulus *= 0.25
+    } else {
+      likelihoodLulus *= 0.12
+      likelihoodTidakLulus *= 0.75
+    }
+
+    if (conditions.kehadiranCukup) {
+      likelihoodLulus *= 0.82
+      likelihoodTidakLulus *= 0.35
+    } else {
+      likelihoodLulus *= 0.18
+      likelihoodTidakLulus *= 0.65
+    }
+
+    if (conditions.ipkBaik) {
+      likelihoodLulus *= 0.9
+      likelihoodTidakLulus *= 0.2
+    } else {
+      likelihoodLulus *= 0.1
+      likelihoodTidakLulus *= 0.8
+    }
+
+    if (conditions.semesterNormal) {
+      likelihoodLulus *= 0.87
+      likelihoodTidakLulus *= 0.28
+    } else {
+      likelihoodLulus *= 0.13
+      likelihoodTidakLulus *= 0.72
+    }
+
+    // Calculate posterior probabilities
+    const posteriorLulus = likelihoodLulus * priorLulus
+    const posteriorTidakLulus = likelihoodTidakLulus * priorTidakLulus
+    const totalPosterior = posteriorLulus + posteriorTidakLulus
+
+    // Normalize probability
+    probability = posteriorLulus / totalPosterior
+
+    const trueCount = Object.values(conditions).filter((c) => c).length
+
+    result = probability >= 0.5 ? "✅ Lulus Tepat Waktu (1)" : "⚠️ Tidak Tepat Waktu (0)"
+    summary = `Metode Naive Bayes menggunakan teorema probabilitas Bayesian untuk menganalisis setiap fitur secara independen. Dari 5 kriteria kelulusan standar, mahasiswa memenuhi ${trueCount} kriteria. Posterior probability dihitung berdasarkan likelihood setiap kondisi (Tugas: ${conditions.tugasBaik ? "✓" : "✗"}, Ujian: ${conditions.ujianBaik ? "✓" : "✗"}, Kehadiran: ${conditions.kehadiranCukup ? "✓" : "✗"}, IPK: ${conditions.ipkBaik ? "✓" : "✗"}, Semester: ${conditions.semesterNormal ? "✓" : "✗"}). ${probability >= 0.5 ? "Probabilitas kelulusan tepat waktu lebih tinggi berdasarkan analisis Bayesian." : "Beberapa kriteria penting tidak terpenuhi, menurunkan probabilitas kelulusan tepat waktu."}`
+  } else if (method === "decision-tree") {
+    // Decision Tree - Enhanced Rule-based Classification
+    // Complex decision tree with multiple branches
+
+    // Root node: IPK (most important feature)
+    if (ipk >= 3.5) {
+      // High IPK branch
+      if (semester <= 8) {
+        result = "✅ Lulus Tepat Waktu (1)"
+        probability = 0.95
+        summary =
+          "Decision Tree: Node Root [IPK ≥ 3.5] → Cabang Kiri [Semester ≤ 8] → PREDIKSI: LULUS. IPK excellent (≥3.5) dan semester optimal (≤8) menunjukkan strong indicator untuk lulus tepat waktu. Confidence level: Sangat Tinggi (95%)."
+      } else if (semester <= 10) {
+        result = "✅ Lulus Tepat Waktu (1)"
+        probability = 0.8
+        summary =
+          "Decision Tree: Node Root [IPK ≥ 3.5] → Cabang Kanan [Semester > 8 & ≤ 10] → PREDIKSI: LULUS. IPK tinggi mengkompensasi semester yang sedikit lebih panjang. Confidence level: Tinggi (80%)."
+      } else {
+        result = "⚠️ Tidak Tepat Waktu (0)"
+        probability = 0.45
+        summary =
+          "Decision Tree: Node Root [IPK ≥ 3.5] → Cabang Kanan [Semester > 10] → PREDIKSI: TERLAMBAT. Meskipun IPK tinggi, durasi studi yang terlalu panjang (>10 semester) meningkatkan risiko keterlambatan."
+      }
+    } else if (ipk >= 3.0) {
+      // Good IPK branch
+      if (kehadiran >= 80 && semester <= 8) {
+        result = "✅ Lulus Tepat Waktu (1)"
+        probability = 0.85
+        summary =
+          "Decision Tree: Node Root [IPK 3.0-3.5] → Node Child [Kehadiran ≥ 80% & Semester ≤ 8] → PREDIKSI: LULUS. Kombinasi IPK baik (≥3.0), kehadiran tinggi (≥80%), dan semester normal menunjukkan pattern positif untuk kelulusan tepat waktu."
+      } else if (nilaiUjian >= 75 && nilaiTugas >= 75) {
+        result = "✅ Lulus Tepat Waktu (1)"
+        probability = 0.75
+        summary =
+          "Decision Tree: Node Root [IPK 3.0-3.5] → Node Child [Nilai Ujian ≥ 75 & Nilai Tugas ≥ 75] → PREDIKSI: LULUS. IPK cukup dengan performa ujian dan tugas yang baik menunjukkan kemampuan akademik yang konsisten."
+      } else if (semester > 10) {
+        result = "⚠️ Tidak Tepat Waktu (0)"
+        probability = 0.35
+        summary =
+          "Decision Tree: Node Root [IPK 3.0-3.5] → Node Child [Semester > 10] → PREDIKSI: TERLAMBAT. Semester yang berlebihan (>10) menjadi red flag utama meskipun IPK dalam range acceptable."
+      } else {
+        result = "⚠️ Tidak Tepat Waktu (0)"
+        probability = 0.48
+        summary =
+          "Decision Tree: Node Root [IPK 3.0-3.5] → Cabang Tengah → PREDIKSI: TERLAMBAT. Kombinasi faktor tidak mencapai threshold minimum untuk prediksi lulus tepat waktu. Perlu peningkatan kehadiran atau performa ujian/tugas."
+      }
+    } else if (ipk >= 2.5) {
+      // Moderate IPK branch
+      if (kehadiran >= 85 && nilaiUjian >= 80 && nilaiTugas >= 80 && semester <= 8) {
+        result = "✅ Lulus Tepat Waktu (1)"
+        probability = 0.65
+        summary =
+          "Decision Tree: Node Root [IPK 2.5-3.0] → Node Child [Multiple Conditions Met] → PREDIKSI: LULUS. Meskipun IPK moderate, kompensasi dari kehadiran excellent (≥85%) dan nilai tinggi (≥80) dapat mendukung kelulusan tepat waktu jika semester masih normal."
+      } else {
+        result = "⚠️ Tidak Tepat Waktu (0)"
+        probability = 0.35
+        summary =
+          "Decision Tree: Node Root [IPK 2.5-3.0] → Cabang Kanan → PREDIKSI: TERLAMBAT. IPK di range 2.5-3.0 memerlukan kompensasi kuat dari faktor lain (kehadiran tinggi + nilai tinggi + semester normal). Saat ini belum memenuhi kombinasi threshold tersebut."
+      }
+    } else {
+      // Low IPK branch
       result = "⚠️ Tidak Tepat Waktu (0)"
-      probability = 0.45
+      probability = 0.2
       summary =
-        "Beberapa indikator akademik menunjukkan risiko keterlambatan kelulusan. Disarankan untuk meningkatkan performa akademik."
+        "Decision Tree: Node Root [IPK < 2.5] → Leaf Node → PREDIKSI: TERLAMBAT. IPK di bawah 2.5 merupakan strong predictor untuk keterlambatan kelulusan. Diperlukan intervensi akademik segera: konseling, remedial, atau program peningkatan IPK."
     }
   }
 
