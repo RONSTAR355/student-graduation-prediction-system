@@ -233,6 +233,9 @@ body {
 
 .hero-image {
   animation: slideInRight 0.8s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
 @keyframes slideInRight {
@@ -246,10 +249,36 @@ body {
   }
 }
 
+/* Added floating and pulse animation for method visualization image */
 .hero-image img {
   width: 100%;
   border-radius: 16px;
   box-shadow: var(--shadow-lg);
+}
+
+.method-visualization {
+  animation: float 3s ease-in-out infinite, pulse 2s ease-in-out infinite alternate;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 10px;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.02);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 20px 10px rgba(102, 126, 234, 0);
+  }
 }
 
 /* About System */
