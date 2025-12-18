@@ -1,3 +1,11 @@
+function goToPrediction() {
+  document.querySelector('a[href="#prediction"]').click()
+}
+
+function openGuideModal() {
+  document.getElementById("guideModal").classList.add("active")
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Navigation & Section Management
   const navLinks = document.querySelectorAll(".nav-link")
@@ -352,5 +360,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize
   console.log("Sistem Prediksi Kelulusan Mahasiswa - Ready")
-  console.log("Metode aktif: JST Backpropagation")
+  console.log("Metode aktif: JST Backpropagation, Naive Bayes, Decision Tree")
 })
