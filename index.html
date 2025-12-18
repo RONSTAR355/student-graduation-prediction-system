@@ -36,12 +36,14 @@
                     <h1 class="hero-title">Sistem Prediksi Kelulusan Mahasiswa Tepat Waktu</h1>
                     <p class="hero-subtitle">Menggunakan Metode Jaringan Syaraf Tiruan Backpropagation</p>
                     <div class="hero-buttons">
-                        <a href="#prediction" class="btn btn-primary">Mulai Prediksi</a>
-                        <button class="btn btn-secondary" id="btnLearnMore">Pelajari Lebih Lanjut</button>
+                        <!-- Fixed button to properly navigate to prediction section -->
+                        <button class="btn btn-primary" onclick="document.querySelector('a[href=\'#prediction\']').click()">Mulai Prediksi</button>
+                        <button class="btn btn-secondary" onclick="document.querySelector('a[href=\'#prediction\']').click()">Pelajari Lebih Lanjut</button>
                     </div>
                 </div>
+                <!-- Replaced placeholder with actual method visualization image with animation -->
                 <div class="hero-image">
-                    <img src="https://placehold.co/600x400?text=Graduation+Success+Prediction+System+with+Neural+Network+Visualization" alt="Graduation Success Prediction System with Neural Network Visualization">
+                    <img src="https://placehold.co/600x400?text=JST+BACKPROPAGATION+%E2%80%A2+NAIVE+BAYES+%E2%80%A2+DECISION+TREE" alt="Visualisasi Metode JST Backpropagation Naive Bayes dan Decision Tree dengan desain modern dan animasi" class="method-visualization">
                 </div>
             </div>
 
