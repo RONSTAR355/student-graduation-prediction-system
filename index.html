@@ -17,7 +17,7 @@
                 <li><a href="#home" class="nav-link active">Beranda</a></li>
                 <li><a href="#prediction" class="nav-link">Prediksi</a></li>
                 <li><a href="#feedback" class="nav-link">Feedback</a></li>
-                <li><button class="btn-guide" id="btnGuide">📖 Petunjuk</button></li>
+                <li><button class="btn-guide" onclick="openGuideModal()">📖 Petunjuk</button></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -36,14 +36,86 @@
                     <h1 class="hero-title">Sistem Prediksi Kelulusan Mahasiswa Tepat Waktu</h1>
                     <p class="hero-subtitle">Menggunakan Metode Jaringan Syaraf Tiruan Backpropagation</p>
                     <div class="hero-buttons">
-                        <!-- Fixed button to properly navigate to prediction section -->
-                        <button class="btn btn-primary" onclick="document.querySelector('a[href=\'#prediction\']').click()">Mulai Prediksi</button>
-                        <button class="btn btn-secondary" onclick="document.querySelector('a[href=\'#prediction\']').click()">Pelajari Lebih Lanjut</button>
+                        <button class="btn btn-primary" onclick="goToPrediction()">Mulai Prediksi</button>
+                        <button class="btn btn-secondary" onclick="goToPrediction()">Pelajari Lebih Lanjut</button>
                     </div>
                 </div>
-                <!-- Replaced placeholder with actual method visualization image with animation -->
                 <div class="hero-image">
-                    <img src="https://placehold.co/600x400?text=JST+BACKPROPAGATION+%E2%80%A2+NAIVE+BAYES+%E2%80%A2+DECISION+TREE" alt="Visualisasi Metode JST Backpropagation Naive Bayes dan Decision Tree dengan desain modern dan animasi" class="method-visualization">
+                    <div class="method-visualization-container">
+                        <svg class="method-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1">
+                                        <animate attributeName="stop-color" values="#667eea;#764ba2;#f093fb;#667eea" dur="4s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1">
+                                        <animate attributeName="stop-color" values="#764ba2;#f093fb;#667eea;#764ba2" dur="4s" repeatCount="indefinite"/>
+                                    </stop>
+                                </linearGradient>
+                                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1">
+                                        <animate attributeName="stop-color" values="#f093fb;#f5576c;#4facfe;#f093fb" dur="3s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1">
+                                        <animate attributeName="stop-color" values="#f5576c;#43e97b;#f093fb;#f5576c" dur="3s" repeatCount="indefinite"/>
+                                    </stop>
+                                </linearGradient>
+                                <linearGradient id="grad3" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1">
+                                        <animate attributeName="stop-color" values="#4facfe;#00f2fe;#43e97b;#4facfe" dur="5s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1">
+                                        <animate attributeName="stop-color" values="#00f2fe;#43e97b;#4facfe;#00f2fe" dur="5s" repeatCount="indefinite"/>
+                                    </stop>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Background -->
+                            <rect width="600" height="400" fill="url(#grad1)" opacity="0.1"/>
+                            
+                            <!-- JST Backpropagation -->
+                            <text x="300" y="100" font-size="36" font-weight="bold" text-anchor="middle" fill="url(#grad1)" class="method-text">
+                                JST BACKPROPAGATION
+                                <animate attributeName="y" values="100;95;100" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="1;0.7;1" dur="2s" repeatCount="indefinite"/>
+                            </text>
+                            
+                            <!-- Divider -->
+                            <line x1="100" y1="150" x2="500" y2="150" stroke="url(#grad2)" stroke-width="3">
+                                <animate attributeName="stroke-dasharray" values="0,400;400,0" dur="3s" repeatCount="indefinite"/>
+                            </line>
+                            
+                            <!-- Naive Bayes -->
+                            <text x="300" y="220" font-size="32" font-weight="bold" text-anchor="middle" fill="url(#grad2)" class="method-text">
+                                NAIVE BAYES
+                                <animate attributeName="y" values="220;215;220" dur="2.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="1;0.8;1" dur="2.5s" repeatCount="indefinite"/>
+                            </text>
+                            
+                            <!-- Divider -->
+                            <line x1="100" y1="270" x2="500" y2="270" stroke="url(#grad3)" stroke-width="3">
+                                <animate attributeName="stroke-dasharray" values="400,0;0,400" dur="3s" repeatCount="indefinite"/>
+                            </line>
+                            
+                            <!-- Decision Tree -->
+                            <text x="300" y="340" font-size="32" font-weight="bold" text-anchor="middle" fill="url(#grad3)" class="method-text">
+                                DECISION TREE
+                                <animate attributeName="y" values="340;335;340" dur="3s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
+                            </text>
+                            
+                            <!-- Decorative circles -->
+                            <circle cx="50" cy="50" r="30" fill="url(#grad1)" opacity="0.3">
+                                <animate attributeName="r" values="30;35;30" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="550" cy="350" r="40" fill="url(#grad2)" opacity="0.3">
+                                <animate attributeName="r" values="40;45;40" dur="2.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="550" cy="50" r="25" fill="url(#grad3)" opacity="0.3">
+                                <animate attributeName="r" values="25;30;25" dur="3s" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                    </div>
                 </div>
             </div>
 
