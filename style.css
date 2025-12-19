@@ -629,6 +629,45 @@ body {
   line-height: 1.8;
 }
 
+/* Adding styles for method visualization and download button */
+.result-visualization {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--light-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  min-height: 250px;
+}
+
+.result-visualization svg {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.method-viz-text {
+  font-family: "Arial Black", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.result-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-download {
+  width: auto;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 /* Feedback Section */
 .feedback-intro {
   background: #dbeafe;
