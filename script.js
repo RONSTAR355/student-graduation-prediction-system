@@ -324,23 +324,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Guide Modal
   const guideModal = document.getElementById("guideModal")
-  const btnGuide = document.getElementById("btnGuide")
   const closeGuide = document.getElementById("closeGuide")
 
-  btnGuide.addEventListener("click", () => {
-    guideModal.classList.add("active")
-  })
-
-  closeGuide.addEventListener("click", () => {
-    guideModal.classList.remove("active")
-  })
+  // Event listener untuk tombol close X
+  if (closeGuide) {
+    closeGuide.addEventListener("click", () => {
+      guideModal.classList.remove("active")
+    })
+  }
 
   // Success Modal Close
   const closeSuccess = document.getElementById("closeSuccess")
 
-  closeSuccess.addEventListener("click", () => {
-    successModal.classList.remove("active")
-  })
+  if (closeSuccess) {
+    closeSuccess.addEventListener("click", () => {
+      successModal.classList.remove("active")
+    })
+  }
 
   // Close modals on outside click
   window.addEventListener("click", (e) => {
