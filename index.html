@@ -240,6 +240,10 @@
                 <h3>Hasil Prediksi</h3>
                 <div class="result-card">
                     <div class="result-status" id="resultStatus"></div>
+                    
+                    <!-- Method Visualization Image -->
+                    <div class="result-visualization" id="resultVisualization"></div>
+                    
                     <div class="result-details">
                         <div class="result-item">
                             <span class="result-label">Metode:</span>
@@ -251,6 +255,13 @@
                         </div>
                     </div>
                     <div class="result-summary" id="resultSummary"></div>
+                    
+                    <!-- Download PDF Button -->
+                    <div class="result-actions">
+                        <button onclick="downloadResultAsPDF()" class="btn btn-primary btn-download">
+                            📄 Download Hasil Prediksi (PDF)
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
