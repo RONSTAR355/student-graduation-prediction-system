@@ -6,6 +6,10 @@ function openGuideModal() {
   document.getElementById("guideModal").classList.add("active")
 }
 
+function closeGuideModal() {
+  document.getElementById("guideModal").classList.remove("active")
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Navigation & Section Management
   const navLinks = document.querySelectorAll(".nav-link")
