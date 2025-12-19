@@ -392,23 +392,21 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.disabled = true
     submitButton.textContent = "⏳ Mengirim..."
 
-    // Template parameters sesuai dengan EmailJS template
     const templateParams = {
       from_name: nama,
       from_email: email,
       message_type: jenis,
       message: pesan,
-      to_name: "Ronald Parsaulian Simanjuntak",
+      to_email: "ronaldsimanjuntak3525@gmail.com",
     }
 
-    // Kirim email menggunakan EmailJS
     window.emailjs
       .send("student_gps135", "template_student_gps135", templateParams)
-      .then(() => {
-        console.log("Feedback berhasil dikirim ke email!")
+      .then((response) => {
+        console.log("✅ Feedback berhasil dikirim!", response.status, response.text)
 
         // Show success message
-        successMessage.textContent = `Terima kasih ${nama}! Feedback Anda telah berhasil dikirim dan akan sangat membantu pengembangan sistem di masa mendatang.`
+        successMessage.textContent = `Terima kasih ${nama}! Feedback Anda telah berhasil dikirim ke ronaldsimanjuntak3525@gmail.com dan akan sangat membantu pengembangan sistem di masa mendatang.`
         successModal.classList.add("active")
 
         // Reset form
@@ -417,8 +415,10 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.textContent = "📤 Kirim Feedback"
       })
       .catch((error) => {
-        console.error("Error mengirim feedback:", error)
-        alert("Maaf, terjadi kesalahan saat mengirim feedback. Silakan coba lagi.")
+        console.error("❌ Error mengirim feedback:", error)
+        alert(
+          `Maaf, terjadi kesalahan saat mengirim feedback.\nError: ${error.text || error}\n\nSilakan coba lagi atau hubungi ronaldsimanjuntak3525@gmail.com`,
+        )
         submitButton.disabled = false
         submitButton.textContent = "📤 Kirim Feedback"
       })
@@ -763,13 +763,7 @@ window.downloadResultAsPDF = () => {
   printWindow.document.close()
 }
 
-window.emailjs = {
-  send: (serviceID, templateID, templateParams) => {
-    return new Promise((resolve, reject) => {
-      // Simulate email sending
-      setTimeout(() => {
-        resolve()
-      }, 1000)
-    })
-  },
-}
+// EMAILJS INITIALIZATION
+;(() => {
+  window.emailjs.init("QpvHZnLBBWAWpebQC")
+})()
