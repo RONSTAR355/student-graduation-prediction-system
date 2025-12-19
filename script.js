@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
           result = "⚠️ Tidak Tepat Waktu (0)"
           probability = 0.35
           summary =
-            "Decision Tree: Node Root [IPK 3.0-3.5] → Node Child [Semester > 10] → PREDIKSI: TERLAMBAT. Semester yang berlebihan (>10) menjadi red flag utama meskipun IPK dalam range acceptable."
+            "Decision Tree: Node Root [IPK 3.0-3.5] → Node Child [Semester > 10] → PREDIKSI: TERLAMBAT. Meskipun IPK dalam range acceptable, semester yang berlebihan (>10) menjadi red flag utama."
         } else {
           result = "⚠️ Tidak Tepat Waktu (0)"
           probability = 0.48
@@ -393,11 +393,13 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.textContent = "⏳ Mengirim..."
 
     const templateParams = {
+      to_name: "Ronald Parsaulian Simanjuntak",
+      to_email: "ronaldsimanjuntak3525@gmail.com",
       from_name: nama,
-      from_email: email,
+      reply_to: email,
+      user_email: email,
       message_type: jenis,
       message: pesan,
-      to_email: "ronaldsimanjuntak3525@gmail.com",
     }
 
     window.emailjs
