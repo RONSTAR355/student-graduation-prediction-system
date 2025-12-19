@@ -326,11 +326,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const guideModal = document.getElementById("guideModal")
   const closeGuide = document.getElementById("closeGuide")
 
+  console.log("[v0] Guide Modal initialized:", guideModal)
+  console.log("[v0] Close Guide Button:", closeGuide)
+
   // Event listener untuk tombol close X
   if (closeGuide) {
-    closeGuide.addEventListener("click", () => {
+    closeGuide.addEventListener("click", (e) => {
+      console.log("[v0] Close guide button clicked")
+      e.preventDefault()
+      e.stopPropagation()
       guideModal.classList.remove("active")
     })
+  } else {
+    console.error("[v0] Close Guide button not found!")
   }
 
   // Success Modal Close
@@ -345,6 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Close modals on outside click
   window.addEventListener("click", (e) => {
     if (e.target === guideModal) {
+      console.log("[v0] Clicked outside guide modal, closing...")
       guideModal.classList.remove("active")
     }
     if (e.target === successModal) {
