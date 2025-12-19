@@ -380,51 +380,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const successModal = document.getElementById("successModal")
   const successMessage = document.getElementById("successMessage")
 
-  formFeedback.addEventListener("submit", (e) => {
-    e.preventDefault()
+  if (formFeedback) {
+    formFeedback.addEventListener("submit", (e) => {
+      e.preventDefault()
 
-    const nama = document.getElementById("feedbackNama").value
-    const email = document.getElementById("feedbackEmail").value
-    const jenis = document.getElementById("feedbackJenis").value
-    const pesan = document.getElementById("feedbackPesan").value
+      const nama = document.getElementById("feedbackNama").value
+      const email = document.getElementById("feedbackEmail").value
+      const jenis = document.getElementById("feedbackJenis").value
+      const pesan = document.getElementById("feedbackPesan").value
 
-    const submitButton = formFeedback.querySelector('button[type="submit"]')
-    submitButton.disabled = true
-    submitButton.textContent = "⏳ Mengirim..."
+      const submitButton = formFeedback.querySelector("button[type='submit']")
+      submitButton.disabled = true
+      submitButton.textContent = "Mengirim..."
 
-    const templateParams = {
-      to_name: "Ronald Parsaulian Simanjuntak",
-      to_email: "ronaldsimanjuntak3525@gmail.com",
-      from_name: nama,
-      reply_to: email,
-      user_email: email,
-      message_type: jenis,
-      message: pesan,
-    }
+      const templateParams = {
+        from_name: nama,
+        from_email: email,
+        message_type: jenis,
+        message: pesan,
+        reply_to: email,
+      }
 
-    window.emailjs
-      .send("student_gps135", "template_student_gps135", templateParams)
-      .then((response) => {
-        console.log("✅ Feedback berhasil dikirim!", response.status, response.text)
+      // Send email via EmailJS
+      window.emailjs
+        .send("student_gps135", "template_student_gps135", templateParams)
+        .then((response) => {
+          console.log("Feedback berhasil dikirim!", response.status, response.text)
 
-        // Show success message
-        successMessage.textContent = `Terima kasih ${nama}! Feedback Anda telah berhasil dikirim ke ronaldsimanjuntak3525@gmail.com dan akan sangat membantu pengembangan sistem di masa mendatang.`
-        successModal.classList.add("active")
+          // Show success message
+          successMessage.textContent = `Terima kasih ${nama}! Feedback Anda telah berhasil dikirim dan akan sangat membantu pengembangan sistem di masa mendatang.`
+          successModal.classList.add("active")
 
-        // Reset form
-        formFeedback.reset()
-        submitButton.disabled = false
-        submitButton.textContent = "📤 Kirim Feedback"
-      })
-      .catch((error) => {
-        console.error("❌ Error mengirim feedback:", error)
-        alert(
-          `Maaf, terjadi kesalahan saat mengirim feedback.\nError: ${error.text || error}\n\nSilakan coba lagi atau hubungi ronaldsimanjuntak3525@gmail.com`,
-        )
-        submitButton.disabled = false
-        submitButton.textContent = "📤 Kirim Feedback"
-      })
-  })
+          // Reset form
+          formFeedback.reset()
+          submitButton.disabled = false
+          submitButton.textContent = "📤 Kirim Feedback"
+        })
+        .catch((error) => {
+          console.error("Error mengirim feedback:", error)
+          alert(
+            `Maaf, terjadi kesalahan saat mengirim feedback.\nError: ${error.text || error}\n\nSilakan coba lagi atau hubungi developer.`,
+          )
+          submitButton.disabled = false
+          submitButton.textContent = "📤 Kirim Feedback"
+        })
+    })
+  }
 
   // Guide Modal
   const guideModal = document.getElementById("guideModal")
