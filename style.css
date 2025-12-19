@@ -712,6 +712,7 @@ body {
   font-size: 1.8rem;
 }
 
+/* Enhanced modal close button styles to ensure it's clickable */
 .modal-close {
   background: none;
   border: none;
@@ -719,10 +720,15 @@ body {
   cursor: pointer;
   color: var(--text-light);
   transition: var(--transition);
+  padding: 0.5rem;
+  line-height: 1;
+  z-index: 10;
+  position: relative;
 }
 
 .modal-close:hover {
   color: var(--danger-color);
+  transform: scale(1.2);
 }
 
 .modal-body {
