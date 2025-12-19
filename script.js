@@ -401,17 +401,14 @@ document.addEventListener("DOMContentLoaded", () => {
         reply_to: email,
       }
 
-      // Send email via EmailJS
       window.emailjs
         .send("student_gps135", "template_student_gps135", templateParams)
         .then((response) => {
           console.log("Feedback berhasil dikirim!", response.status, response.text)
 
-          // Show success message
           successMessage.textContent = `Terima kasih ${nama}! Feedback Anda telah berhasil dikirim dan akan sangat membantu pengembangan sistem di masa mendatang.`
           successModal.classList.add("active")
 
-          // Reset form
           formFeedback.reset()
           submitButton.disabled = false
           submitButton.textContent = "📤 Kirim Feedback"
@@ -434,7 +431,6 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("[v0] Guide Modal initialized:", guideModal)
   console.log("[v0] Close Guide Button:", closeGuide)
 
-  // Event listener untuk tombol close X
   if (closeGuide) {
     closeGuide.addEventListener("click", (e) => {
       console.log("[v0] Close guide button clicked")
@@ -446,7 +442,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("[v0] Close Guide button not found!")
   }
 
-  // Success Modal Close
   const closeSuccess = document.getElementById("closeSuccess")
 
   if (closeSuccess) {
@@ -455,7 +450,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Close modals on outside click
   window.addEventListener("click", (e) => {
     if (e.target === guideModal) {
       console.log("[v0] Clicked outside guide modal, closing...")
@@ -466,7 +460,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const href = this.getAttribute("href")
@@ -476,7 +469,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Initialize
   console.log("Sistem Prediksi Kelulusan Mahasiswa - Ready")
   console.log("Metode aktif: JST Backpropagation, Naive Bayes, Decision Tree")
 })
@@ -488,7 +480,6 @@ window.downloadResultAsPDF = () => {
     return
   }
 
-  // Function untuk mendapatkan visualisasi metode
   const getMethodVisualization = (method) => {
     if (method === "backpropagation") {
       return `
@@ -552,7 +543,6 @@ window.downloadResultAsPDF = () => {
     }
   }
 
-  // Create a new window with print-friendly content
   const printWindow = window.open("", "_blank")
   const methodViz = getMethodVisualization(
     result.method.includes("Backpropagation")
@@ -765,8 +755,6 @@ window.downloadResultAsPDF = () => {
 
   printWindow.document.close()
 }
-
-// EMAILJS INITIALIZATION
 ;(() => {
   window.emailjs.init("QpvHZnLBBWAWpebQC")
 })()
